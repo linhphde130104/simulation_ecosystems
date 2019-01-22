@@ -17,6 +17,7 @@ public class Grass {
     private double [][] cells;
     private Random rand;
      
+    private static double MAXGROWING_SPEED = 0.1;
     public Grass(int nColunms, int nRows){
         super();
         this.rand = new Random();
@@ -33,15 +34,18 @@ public class Grass {
     public double getcells(int i,int j){
         return cells[i][j];
     }
-    public static void main(String[] args) {
-        Grass gr=new Grass(6,9);
-        for(int i=0;i<gr.nRows;i++){
-            for(int j=0;j<gr.nColunms;j++){
-               System.out.print( String.format( "%.2f", gr.getcells(i, j) ) + "  ");
-	        }
-			System.out.println();
+    public void grow() {
+		
+		for (int i=0;i<nRows;i++) {
+			for(int j=0;j<nColunms;j++) 
+			{
+				cells[i][j]+=rand.nextDouble()*MAXGROWING_SPEED;				
+				cells[i][j]=(cells[i][j])>1? 1 : cells[i][j]; 
+				
+			}
+		}
+		
 	}
-        
-    }
+   
 }
 
